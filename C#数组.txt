@@ -1,0 +1,241 @@
+ string[] days = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            /*
+             * 两种方法：1.在数组里面添加一个空字符串“”
+             *           2.输出n-1的数组元素
+             */
+            Console.WriteLine("请输入:");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine("这是" + days[n - 1]);
+
+            int sum = 0,j=0,i=0;
+            Console.WriteLine("请输入一个二维数组arr1:");
+            int[,] arr1 = new int[2, 3]
+                for ( i = 0; i < 2; i++)
+            { for ( j = 0; j < 3; j++)
+                    arr1[i][j] = int.Parse(Console.ReadLine()); }
+            Console.WriteLine("请输入一个二维数组arr2:");
+            int[,] arr2 = new int[2, 3]
+                for ( i = 0; i < 2; i++)
+                for ( j = 0; j < 3; j++)
+                { arr2[i][j] = int.Parse(Console.ReadLine());
+            sum += arr1[i][j] + arr2[i][j]; }
+
+//数组初始化
+ static void Main(string[] args)
+        {
+            
+            Contact[] one = new Contact[3];
+            one[0]=new Contact();
+            one[1]=new Contact();
+            one[2]=new Contact();
+            one[0].name = "小明";
+            one[0].telephone = "123456789";
+            one[1].name = "小张";
+            one[1].telephone = "223456789";
+            one[2] = one[0];
+            one[2].name = "小雨";
+            one[2].telephone = "456789321";
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(one[i].name + ":");
+                Console.WriteLine(one[i].telephone + ":");
+            }
+            Console.ReadKey();
+/*
+用foreach方法：
+static void Main(string[] args)
+        {
+            Contact[] one = new Contact[3];
+            one[0] = new Contact();
+            one[1] = new Contact();
+            one[2] = new Contact();
+            one[0].name = "小明";
+            one[0].telephone = "123456789";
+            one[1].name = "小张";
+            one[1].telephone = "223456789";
+            one[2] = one[0];
+            one[2].name = "小雨";
+            one[2].telephone = "456789321";
+            foreach (Contact c in one) Console.WriteLine(c.name + ":" + c.telephone);//注意：foreach这一句不能加分号！！！
+
+        }
+        public class Contact
+        {
+            public string name;
+            public string telephone;
+        }
+*/
+
+//最大最小值
+int[] number = { 25, 36, 78, 15, 21, 14 };
+            int max = number[0],min=number[0];
+            for (int i = 1; i < 6; i++)
+            {
+                if (number[i] > max) max = number[i];
+                if (number[i] < min) min = number[i];
+            }
+            Console.WriteLine("最大值是:" + max + "最小值是:" + min);
+
+//数组排序
+Array.Sort（）；升序
+//数组反转
+Array.Reverse();
+ //冒泡排序
+            /*int[] n = { 15, 25, 36, 31, 12, 41, 89, 78, 55, 62 };
+            int i = 0, j = 0, t = 0;
+            for (; i < n.Length-1; i++)
+                for (j = i + 1; j < n.Length; j++)
+                    if (n[i] > n[j]) 
+                    {
+                        t = n[i]; 
+                        n[i] = n[j]; 
+                        n[j] = t;
+                     }
+            foreach (int c in n)
+                Console.WriteLine(c);*/
+            //选择排序
+            int[] n = { 15, 25, 36, 31, 12, 41, 89, 78, 55, 62 };
+            int i=0,j=0,t = 0,m=0;
+            for (i = 0; i < n.Length - 1; i++)
+                {
+                    m = i;
+                    for (j = i + 1; j < n.Length; j++)
+                    {
+                        if (n[j] < n[i])
+                        {
+                            m = j;
+                            int temp = n[i];
+                            n[i] = n[m];
+                            n[m] = temp;
+                        }
+                        
+                    }
+                    Console.WriteLine("第" + (i + 1) + "轮排序结果为:");
+                    foreach (int e in n)
+                        Console.Write(" " + e + " ");
+                    Console.WriteLine("");
+
+
+//上机作业
+1：冒泡排序，沉底
+2：冒泡排序，上浮
+3：选择排序，升序
+4：选择排序，降序
+using System;
+
+namespace ConsoleApp1
+{
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] n = { 15, 25, 36, 31, 12, 41, 89, 78, 55, 62 };
+            int i = 0, j = 0, t = 0, k = 1, m = 0;
+            Console.Write("选择一个你想要的排序方式（1：冒泡排序，沉底；2：冒泡排序，上浮；3：选择排序，升序；4：选择排序，降序）:");
+            int c;
+            c = int.Parse(Console.ReadLine());
+            //冒泡排序，从前往后，下沉
+            if (c == 1)
+            {
+                for (; i < n.Length - 1; i++)
+                {
+                    for (j = i + 1; j < n.Length; j++)
+                    {
+                        if (n[i] > n[j])
+                        {
+                            t = n[i];
+                            n[i] = n[j];
+                            n[j] = t;
+                        }
+
+                    }
+                    Console.WriteLine("第" + (i + 1) + "轮排序结果为:");
+                    foreach (int e in n)
+                        Console.Write(" " + e + " ");
+                    Console.WriteLine("");
+                }
+
+            }
+            //冒泡排序，从后往前，上浮
+            if (c == 2)
+            {
+                for (i = n.Length; i > 0; i--)
+                {
+                    for (j = n.Length - 1; j > 0; j--)
+                    {
+                        if (n[j] < n[j - 1])
+                        {
+                            t = n[j];
+                            n[j] = n[j - 1];
+                            n[j - 1] = t;
+                        }
+
+                    }
+                    Console.WriteLine("第" + (k++) + "轮排序结果为:");
+                    foreach (int e in n)
+                        Console.Write(" " + e + " ");
+                    Console.WriteLine("");
+                }
+
+            }
+            //选择排序，升序
+            if (c == 3)
+            {
+                for (i = 0; i < n.Length - 1; i++)
+                {
+                    m = i;
+                    for (j = i + 1; j < n.Length; j++)
+                    {
+                        if (n[j] < n[i])
+                        {
+                            m = j;
+                            int temp = n[i];
+                            n[i] = n[m];
+                            n[m] = temp;
+                        }
+
+                    }
+                    Console.WriteLine("第" + (i + 1) + "轮排序结果为:");
+                    foreach (int e in n)
+                        Console.Write(" " + e + " ");
+                    Console.WriteLine("");
+                }
+
+            }
+            //选择排序，降序
+            if (c == 4)
+            {
+                for (i = 0; i < n.Length - 1; i++)
+                {
+                    m = i;
+                    for (j = i + 1; j < n.Length; j++)
+                    {
+                        if (n[j] > n[i])
+                        {
+                            m = j;
+                            int temp = n[i];
+                            n[i] = n[m];
+                            n[m] = temp;
+                        }
+
+                    }
+                    Console.WriteLine("第" + (i + 1) + "轮排序结果为:");
+                    foreach (int e in n)
+                        Console.Write(" " + e + " ");
+                    Console.WriteLine("");
+
+                }
+
+            }
+        }
+
+
+
+
+    }
+}
+       
+
+    
+
