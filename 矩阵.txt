@@ -1,0 +1,106 @@
+ static Random rnd = new Random();
+        static void Main(string[] args)
+        {
+            //矩阵的基本运算
+            
+            Console.WriteLine("Please tell me the number of rows:");
+            int rows = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please tell me the number of cols:");
+            int cols = int.Parse(Console.ReadLine());
+            int[,] A = new int[rows, cols];
+            int[,] B = new int[rows, cols];
+            fileJuZhen(A, rows, cols);
+            fileJuZhen(B, rows, cols);
+            PrintJuZhen(A, rows, cols);
+            Console.ReadLine();
+            PrintJuZhen(B, rows, cols);
+            Console.WriteLine("请输入数字(1 加法；2 减法；3 乘法):");
+            int c=int.Parse(Console.ReadLine());
+            if (c == 1) SumJuZhen(A, B, rows, cols);
+            if (c == 2) ChaJuZhen(A, B, rows, cols);
+            if (c == 3) ChengJuZhen(A, B, rows, cols);
+
+        }
+
+        static void fileJuZhen(int[,] ju,int row,int col)
+        {
+            Random rnd = new Random();
+            for (int i=0;i<row;i++)
+            {
+                for(int j=0;j<col;j++)
+                    ju[i,j]= rnd.Next(100);
+            }
+            
+        }
+        static void PrintJuZhen(int[,] ju, int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                    Console.Write(" " + ju[i, j] + " ");
+                Console.WriteLine();
+            }
+        }
+
+        static void SumJuZhen(int[,]A,int[,] B,int row,int col)
+        {
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
+                    A[i, j] = A[i, j] + B[i, j];
+            PrintJuZhen(A, row, col);
+        }
+        static void ChaJuZhen(int[,] A, int[,] B, int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+                for (int j = 0; j < col; j++)
+                    A[i, j] = A[i, j] - B[i, j];
+            PrintJuZhen(A, row, col);
+        }
+
+        static void ChengJuZhen(int[,] A, int[,] B, int row, int col)
+        {
+            int sum = 0,i,j;
+            for ( i = 0; i < row; i++)
+            {
+                for ( j = 0; j < col; j++)
+                {
+                    for (int k = 0; k < col; k++)
+                        A[i, j] += A[i, k] * B[k, j];
+                }
+                
+            }
+            PrintJuZhen(A, row, col);
+        }
+
+//杨辉三角
+Console.WriteLine("请输入杨辉三角的n值:");
+            int n=int.Parse(Console.ReadLine());
+            int[,] arr1 = new int[n + 1, n + 1];
+            int i = 0, j = 0;
+            //创建杨辉三角
+            if (n < 3) Console.WriteLine("1");
+            else
+            { 
+                for (i = 0; i < n; i++)
+                {
+                   
+                    for (j=0; j < i + 1; j++)
+                    {
+                        if (j == 0 || j == i) arr1[i, j] = 1;
+                        else arr1[i, j] = arr1[i - 1, j - 1] + arr1[i - 1, j];
+                        //Console.Write(" " + arr1[i, j] + " ");
+                    }
+                } 
+            }
+            //输出杨辉三角
+            Console.WriteLine("Hello~！你的杨辉三角已到货！");
+            for (i = 0; i < n; i++)
+            {
+                Console.WriteLine();
+                for (int k = 0; k < n - i; k++) Console.Write(" ");
+                for(j=0;j<i+1;j++)
+                {
+                    Console.Write(arr1[i, j] + " ");
+                }
+                
+            }
